@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\StudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +52,8 @@ Route::prefix('dashboard')->group(function() {
     });
 });
 
+// Larvael Views
+Route::get('/students', [StudentController::class, 'index']);
 
 Route::get('/', function() {
     return view('index');
