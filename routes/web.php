@@ -36,7 +36,7 @@ Route::get('/dashboard', function(){
     return "Welcome from TPP Program Dashboard!";
 })->name('dashboard.tpp');
 
-Route::get('/tpxp', function(){
+Route::get('/tpp', function(){
     return redirect()->route('dashboard.tpp');
 });
 
