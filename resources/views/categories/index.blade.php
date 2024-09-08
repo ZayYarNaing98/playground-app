@@ -11,11 +11,8 @@
 </head>
 
 <body>
-    <div>
+    <div class="container">
         <h1 class="mb-4">Categories List</h1>
-        {{-- @foreach ($categories as $data)
-            <p>{{ $data['id'] }} : {{ $data['name'] }}</p>
-        @endforeach --}}
         <a href="{{ route('categories.create') }}" class="btn btn-outline-success mb-4">
            + Create
         </a>
@@ -32,8 +29,12 @@
                     <tr>
                         <th>{{ $data['id'] }}</th>
                         <th>{{ $data['name'] }}</th>
-                        <th>
-                            <a href="{{route('categories.edit')}}" class="btn btn-outline-secondary">Edit</a>
+                        <th class="d-flex">
+                            <a href="{{route('categories.edit', ['id' => $data->id])}}" class="btn btn-outline-secondary me-2">Edit</a>
+                            <form action="{{ route('categories.delete', $data->id) }}" method="POST">
+                                @csrf
+                                <button class="btn btn-outline-danger">Delete</button>
+                            </form>
                         </th>
                     </tr> @endforeach
             </tbody>

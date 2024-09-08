@@ -34,7 +34,6 @@ class CategoryController extends Controller
 
         $categories = Category::all();
 
-        // dd($categories);
         return view('categories.index', compact('categories'));
     }
 
@@ -43,8 +42,44 @@ class CategoryController extends Controller
         return view('categories.create');
     }
 
-    public function edit()
+    public function edit($id)
     {
-        return view('categories.edit');
+        $category = Category::where('id', $id)->first();
+
+        return view('categories.edit', compact('category'));
+    }
+
+    public function store(Request $request)
+    {
+        // $data = $request->all();
+        // dd($data);
+
+        Category::create([
+            'name' => $request->name,
+        ]);
+
+        return redirect()->route('categories.index');
+    }
+
+    public function update(Request $request)
+    {
+        $category = Category::where('id', $request->id)->first();
+        // dd($category);
+
+        $category->update([
+            'name' => $request->name,
+        ]);
+
+        return redirect()->route('categories.index');
+    }
+
+    public function delete($id)
+    {
+        // dd($id);
+        $category = Category::where('id', $id)->first();
+        // dd($category);
+        $category->delete();
+
+        return redirect()->route('categories.index');
     }
 }
