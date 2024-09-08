@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductContoller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentController;
 
@@ -71,3 +72,11 @@ Route::get('/categories/{id}', [CategoryController::class, 'edit'])->name('categ
 Route::post('/categories/{id}/update', [CategoryController::class, 'update'])->name('categories.update');
 
 Route::post('/categories/{id}', [CategoryController::class, 'delete'])->name('categories.delete');
+
+Route::get('products', [ProductContoller::class, 'index'])->name('products.index');
+Route::get('/products/create', [ProductContoller::class, 'create'])->name('products.create');
+Route::post('/products/store', [ProductContoller::class, 'store'])->name('products.store');
+
+Route::get('/products/{id}', [ProductContoller::class, 'edit'])->name('products.edit');
+Route::post('/products/{id}/update', [ProductContoller::class, 'update'])->name('products.update');
+Route::post('/products/{id}', [ProductContoller::class, 'destroy'])->name('products.delete');
