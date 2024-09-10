@@ -28,6 +28,12 @@
                 <div class="card-body">
                     <input type="text" name="price" class="form-control card-body" value="{{ $product->price }}" />
                 </div>
+                <div class="card-body">
+                    <label class="form-label" >Status</label>
+                    <div class="form-check form-switch">
+                        <input type="checkbox" class="form-check-input" name="status"  {{ ($product->status === 1) ? "checked": "" }} />
+                    </div>
+                </div>
                 <div class="card-footer">
                     <button class="btn btn-primary" type="submit">Update</button>
                     <a href="{{ route('products.index') }}" class="btn btn-secondary">Back</a>

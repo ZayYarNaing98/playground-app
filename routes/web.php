@@ -63,6 +63,7 @@ Route::get('/', function() {
 
 // Model and Migrations
 
+//category
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
 
 Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
@@ -73,10 +74,14 @@ Route::post('/categories/{id}/update', [CategoryController::class, 'update'])->n
 
 Route::post('/categories/{id}', [CategoryController::class, 'delete'])->name('categories.delete');
 
+
+// Products
 Route::get('products', [ProductContoller::class, 'index'])->name('products.index');
+
 Route::get('/products/create', [ProductContoller::class, 'create'])->name('products.create');
 Route::post('/products/store', [ProductContoller::class, 'store'])->name('products.store');
 
 Route::get('/products/{id}', [ProductContoller::class, 'edit'])->name('products.edit');
 Route::post('/products/{id}/update', [ProductContoller::class, 'update'])->name('products.update');
+
 Route::post('/products/{id}', [ProductContoller::class, 'destroy'])->name('products.delete');

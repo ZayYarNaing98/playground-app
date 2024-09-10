@@ -21,6 +21,7 @@
                     <th class="bg-primary text-white" scope="col">NAME</th>
                     <th class="bg-primary text-white" scope="col">DESCRIPTION</th>
                     <th class="bg-primary text-white" scope="col">PRICE</th>
+                    <th class="bg-primary text-white" scope="col">STATUS</th>
                     <th class="bg-primary text-white" scope="col">ACTION</th>
                 </tr>
             </thead>
@@ -31,6 +32,13 @@
                         <th>{{ $data['name'] }}</th>
                         <th>{{ $data['description'] }}</th>
                         <th>{{ $data['price'] }}</th>
+                        <td>
+                            @if ($data->status === 1)
+                                <span class="text-success">Active</span>
+                            @else
+                                <span class="text-danger">Suspend</span>
+                            @endif
+                        </td>
                         <th class="d-flex">
                             <a href="{{route('products.edit', ['id' => $data->id])}}" class="btn btn-outline-secondary me-2">Edit</a>
                             <form action="{{ route('products.delete', $data->id) }}" method="POST">

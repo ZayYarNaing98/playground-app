@@ -30,6 +30,12 @@
                     <input type="text" name="price" class="form-control card-body"
                         placeholder="Enter Product Price" />
                 </div>
+                {{-- <div class="card-body">
+                    <label class="form-label" >Status</label>
+                    <div class="form-check form-switch">
+                        <input type="checkbox" class="form-check-input" name="status" checked />
+                    </div>
+                </div> --}}
                 <div class="card-footer">
                     <button class="btn btn-primary" type="submit">+ Create</button>
                     <a href="{{ route('products.index') }}" class="btn btn-secondary">Back</a>

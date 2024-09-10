@@ -17,9 +17,6 @@ class ProductContoller extends Controller
         return view('products.index', compact('product'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('products.create');
@@ -39,17 +36,7 @@ class ProductContoller extends Controller
         return redirect()->route('products.index');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
         $product = Product::where('id', $id)->first();
@@ -57,26 +44,21 @@ class ProductContoller extends Controller
         return view('products.edit', compact('product'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
         $product = Product::where('id', $request->id)->first();
         // dd($product);
-
+        // dd($request->status == 'on' ? 1 : 0);
         $product->update([
             'name' => $request->name,
             'description' => $request->description,
             'price' => $request->price,
+            'status' => $request->status  == 'on' ? 1 : 0,
         ]);
 
         return redirect()->route('products.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy($id)
     {
         $product = Product::where('id', $id)->first();
