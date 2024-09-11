@@ -21,6 +21,7 @@
                     <th class="bg-primary text-white" scope="col">NAME</th>
                     <th class="bg-primary text-white" scope="col">DESCRIPTION</th>
                     <th class="bg-primary text-white" scope="col">PRICE</th>
+                    <th class="bg-primary text-white" scope="col">IMAGE</th>
                     <th class="bg-primary text-white" scope="col">STATUS</th>
                     <th class="bg-primary text-white" scope="col">ACTION</th>
                 </tr>

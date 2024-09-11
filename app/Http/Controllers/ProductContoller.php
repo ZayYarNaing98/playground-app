@@ -22,14 +22,20 @@ class ProductContoller extends Controller
 
     public function store(ProductRequest $request)
     {
-        $request->validated();
+        // dd($request->all());
+        $data = $request->validated();
 
-        Product::create([
-            'name' => $request->name,
-            'description' => $request->description,
-            'price' => $request->price,
-            'status' => $request->status == 'on' ? true : false,
-        ]);
+        $data['status'] = $request->has('status') ? true : false;
+
+        if($request->hasFile('image'))
+        {
+            $imageName = time(). '.' . $request->image->extension();
+            $request->image->move(public_path('productImages'), $imageName);
+
+            $data = array_merge($data, ['image' => $imageName]);
+        }
+
+        Product::create($data);
 
         return redirect()->route('products.index');
     }
