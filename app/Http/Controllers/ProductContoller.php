@@ -11,7 +11,7 @@ class ProductContoller extends Controller
     public function index()
     {
         $product = Product::all();
-        // dd($product);
+
         return view('products.index', compact('product'));
     }
 
@@ -20,27 +20,28 @@ class ProductContoller extends Controller
         return view('products.create');
     }
 
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-        // dd($request);
-        // $data = $request->validated();
-        // Product::create([
-        //     'name' => $request->name,
-        //     'description' => $request->description,
-        //     'price' => $request->price,
-        //     'status' => $request->status == 'on' ? true : false,
-        // ]);
-        // Product::create($data);
+        $request->validated();
 
-        $validatedData = $request->validate([
-            'name' => 'required|string',
-            'description' => 'required|string',
-            'price' => 'required|integer',
-            'status' => 'nullable',
+        Product::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'price' => $request->price,
+            'status' => $request->status == 'on' ? true : false,
         ]);
-        // dd($validatedData);
-        $validatedData['status'] = $request->has('status') ? true : false;
-        Product::create($validatedData);
+
+
+        // $validatedData = $request->validate([
+        //     'name' => 'required|string',
+        //     'description' => 'required|string',
+        //     'price' => 'required|integer',
+        //     'status' => 'nullable',
+        // ]);
+
+        // $validatedData['status'] = $request->has('status') ? true : false;
+
+        // Product::create($validatedData);
 
 
         return redirect()->route('products.index');
@@ -56,7 +57,6 @@ class ProductContoller extends Controller
 
     public function update(Request $request)
     {
-        // dd($request);
         $product = Product::where('id', $request->id)->first();
 
         $product->update([
@@ -72,7 +72,7 @@ class ProductContoller extends Controller
     public function destroy($id)
     {
         $product = Product::where('id', $id)->first();
-        // dd($product);
+
         $product->delete();
 
         return redirect()->route('products.index');
