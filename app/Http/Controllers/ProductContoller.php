@@ -31,19 +31,6 @@ class ProductContoller extends Controller
             'status' => $request->status == 'on' ? true : false,
         ]);
 
-
-        // $validatedData = $request->validate([
-        //     'name' => 'required|string',
-        //     'description' => 'required|string',
-        //     'price' => 'required|integer',
-        //     'status' => 'nullable',
-        // ]);
-
-        // $validatedData['status'] = $request->has('status') ? true : false;
-
-        // Product::create($validatedData);
-
-
         return redirect()->route('products.index');
     }
 
