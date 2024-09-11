@@ -12,6 +12,17 @@
 
 <body>
     <div class="container">
+        @if ($errors->any())
+            {{-- {{ dd($errors) }} --}}
+            <div class="alert alert-danger mt-4">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <div class="card mt-4">
             <div class="card-header">
                 Create Product
