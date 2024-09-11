@@ -20,28 +20,19 @@ class ProductContoller extends Controller
         return view('products.create');
     }
 
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
         // dd($request);
-        // $data = $request->validated();
-        // Product::create([
-        //     'name' => $request->name,
-        //     'description' => $request->description,
-        //     'price' => $request->price,
-        //     'status' => $request->status == 'on' ? true : false,
-        // ]);
-        // Product::create($data);
+        $data = $request->validated();
+        $data['status'] = $request->has('status') ? true : false;
 
-        $validatedData = $request->validate([
-            'name' => 'required|string',
-            'description' => 'required|string',
-            'price' => 'required|integer',
-            'status' => 'nullable',
-        ]);
-        // dd($validatedData);
-        $validatedData['status'] = $request->has('status') ? true : false;
-        Product::create($validatedData);
+        if ($request->hasFile('image')) {
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('images'), $imageName);
+            $data = array_merge($data, ['image' => $imageName]);
+        }
 
+        Product::create($data);
 
         return redirect()->route('products.index');
     }

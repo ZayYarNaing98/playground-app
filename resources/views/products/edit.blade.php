@@ -32,6 +32,11 @@
                     <input type="text" name="price" class="form-control card-body" value="{{ $product->price }}" />
                 </div>
                 <div class="card-body">
+                    <label for="image" class="form-label">Image :</label>
+                    <img src="{{ asset('images/' . $product->image) }}" alt="{{ $product->image }}"
+                        style="width:50px; height:50px" />
+                </div>
+                <div class="card-body">
                     <div class="form-check form-switch">
                         <label class="form-check-label">Active or Inactive</label>
                         <input class="form-check-input" name="status" type="checkbox" role="switch"
