@@ -19,23 +19,26 @@
             <form action="{{ route('products.store') }}" method="POST">
                 @csrf
                 <div class="card-body">
+                    <label for="name" class="form-label">Name :</label>
                     <input type="text" name="name" class="form-control card-body"
                         placeholder="Enter Product Name" />
                 </div>
                 <div class="card-body">
+                    <label for="description" class="form-label">Description :</label>
                     <input type="text" name="description" class="form-control card-body"
                         placeholder="Enter Product Descripiton" />
                 </div>
                 <div class="card-body">
+                    <label for="price" class="form-label">Price :</label>
                     <input type="text" name="price" class="form-control card-body"
                         placeholder="Enter Product Price" />
                 </div>
-                {{-- <div class="card-body">
-                    <label class="form-label" >Status</label>
+                <div class="card-body">
                     <div class="form-check form-switch">
-                        <input type="checkbox" class="form-check-input" name="status" checked />
+                        <label class="form-check-label">Active or Inactive</label>
+                        <input class="form-check-input" name="status" type="checkbox" role="switch" checked />
                     </div>
-                </div> --}}
+                </div>
                 <div class="card-footer">
                     <button class="btn btn-primary" type="submit">+ Create</button>
                     <a href="{{ route('products.index') }}" class="btn btn-secondary">Back</a>

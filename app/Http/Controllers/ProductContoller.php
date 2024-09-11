@@ -7,9 +7,6 @@ use Illuminate\Http\Request;
 
 class ProductContoller extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $product = Product::all();
@@ -22,15 +19,14 @@ class ProductContoller extends Controller
         return view('products.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
+        // dd($request);
         Product::create([
             'name' => $request->name,
             'description' => $request->description,
             'price' => $request->price,
+            'status' => $request->status == 'on' ? true : false,
         ]);
 
         return redirect()->route('products.index');
@@ -46,9 +42,9 @@ class ProductContoller extends Controller
 
     public function update(Request $request)
     {
+        // dd($request);
         $product = Product::where('id', $request->id)->first();
-        // dd($product);
-        // dd($request->status == 'on' ? 1 : 0);
+
         $product->update([
             'name' => $request->name,
             'description' => $request->description,
