@@ -35,6 +35,14 @@ class ProductContoller extends Controller
             $data = array_merge($data, ['image' => $imageName]);
         }
 
+        // if($request->hasFile('image'))
+        // {
+        //     $imageName = time(). '.' . $request->image->extension();
+        //     $request->image->storeAs('productImages/', $imageName);
+
+        //     $data = array_merge($data, ['image' => $imageName]);
+        // }
+
         Product::create($data);
 
         return redirect()->route('products.index');

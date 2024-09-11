@@ -34,6 +34,7 @@
                         <th>{{ $data['description'] }}</th>
                         <th>{{ $data['price'] }}</th>
                         <th><img src="{{ asset('productImages/' . $data->image)}}" alt="{{ $data->image }}" style="width:50px; height:50px"/></th>
+                        {{-- <th><img src="{{ asset('storage/productImages/' . $data->image)}}" alt="{{ $data->image }}" style="width:50px; height:50px"/></th> --}}
                         <td>
                             @if ($data->status === 1)
                                 <span class="text-success">Active</span>
