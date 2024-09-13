@@ -16,9 +16,9 @@ use App\Http\Controllers\StudentController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
 
 
 // Static Route
@@ -57,9 +57,9 @@ Route::prefix('dashboard')->group(function() {
 // Larvael Views
 Route::get('/students', [StudentController::class, 'index']);
 
-Route::get('/', function() {
-    return view('index');
-});
+// Route::get('/', function() {
+//     return view('index');
+// });
 
 // Model and Migrations
 
@@ -86,6 +86,8 @@ Route::post('/products/{id}/update', [ProductContoller::class, 'update'])->name(
 
 Route::post('/products/{id}', [ProductContoller::class, 'destroy'])->name('products.delete');
 
-Auth::routes();
+// Authentation
+
+Auth::routes(['register' => false]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
