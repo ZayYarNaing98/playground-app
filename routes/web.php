@@ -85,3 +85,7 @@ Route::get('/products/{id}', [ProductContoller::class, 'edit'])->name('products.
 Route::post('/products/{id}/update', [ProductContoller::class, 'update'])->name('products.update');
 
 Route::post('/products/{id}', [ProductContoller::class, 'destroy'])->name('products.delete');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
