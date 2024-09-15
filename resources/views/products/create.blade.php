@@ -41,7 +41,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <label for="category" class="form-label">Author</label>
+                    <label for="category" class="form-label">Category</label>
                     <select name="category_id" id="category_id" class="form-select">
                         @foreach ($category as $data)
                             <option value="{{ $data->id }}">{{ $data->name }}</option>
