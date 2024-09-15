@@ -12,7 +12,7 @@
         @endif
 
         <div class="card mt-4">
-            <div class="card-header">
+            <div class="card-header bg-secondary text-white">
                 Create Product
             </div>
             <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">

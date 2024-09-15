@@ -2,7 +2,7 @@
 @section('content')
     <div class="container">
         <div class="card mt-4">
-            <div class="card-header">
+            <div class="card-header bg-secondary text-white">
                 Edit Product
             </div>
             <form action="{{ route('products.update', $product->id) }}" method="POST">
