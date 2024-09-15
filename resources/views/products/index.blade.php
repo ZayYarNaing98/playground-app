@@ -14,6 +14,7 @@
                     <th class="bg-primary text-white" scope="col">PRICE</th>
                     <th class="bg-primary text-white" scope="col">IMAGE</th>
                     <th class="bg-primary text-white" scope="col">STATUS</th>
+                    <th class="bg-primary text-white" scope="col">CATEGORY</th>
                     <th class="bg-primary text-white" scope="col">ACTION</th>
                 </tr>
             </thead>
@@ -33,6 +34,7 @@
                                 <span class="text-danger">Suspend</span>
                             @endif
                         </td>
+                        <th>{{ $data['category']['name'] }}</th>
                         <th class="d-flex">
                             <a href="{{ route('products.edit', ['id' => $data->id]) }}"
                                 class="btn btn-outline-secondary me-2">Edit</a>

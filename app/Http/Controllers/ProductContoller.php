@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductRequest;
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -15,14 +16,16 @@ class ProductContoller extends Controller
 
     public function index()
     {
-        $product = Product::all();
+        $product = Product::with('category')->get();
 
         return view('products.index', compact('product'));
     }
 
     public function create()
     {
-        return view('products.create');
+        $category = Category::all();
+
+        return view('products.create', compact('category'));
     }
 
     public function store(ProductRequest $request)
@@ -48,7 +51,7 @@ class ProductContoller extends Controller
 
     public function edit(string $id)
     {
-        $product = Product::where('id', $id)->first();
+        $product = Product::with('category')->where('id', $id)->first();
 
         return view('products.edit', compact('product'));
     }
