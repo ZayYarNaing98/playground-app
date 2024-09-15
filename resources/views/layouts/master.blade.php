@@ -16,7 +16,8 @@
 
 <body>
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
-        <div class="app-header header-shadow">
+        @include('layouts.header')
+        {{-- <div class="app-header header-shadow">
             <div class="app-header__logo">
                 <div class="logo-src"></div>
                 <div class="header__pane ml-auto">
@@ -130,7 +131,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <div class="ui-theme-settings">
             <button type="button" id="TooltipDemo" class="btn-open-options btn btn-warning">
                 <i class="fa fa-cog fa-w-16 fa-spin fa-2x"></i>
@@ -502,7 +503,8 @@
             </div>
         </div>
         <div class="app-main">
-            <div class="app-sidebar sidebar-shadow">
+            @include('layouts.sidebar')
+            {{-- <div class="app-sidebar sidebar-shadow">
                 <div class="app-header__logo">
                     <div class="logo-src"></div>
                     <div class="header__pane ml-auto">
@@ -563,7 +565,7 @@
                         </ul>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             @yield('content')
             <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
         </div>
