@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\ProductContoller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductContoller;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,44 +23,44 @@ Route::get('/', function () {
 
 
 // Static Route
-Route::get('/blogs', function () {
-    return "Hello, This is blog page.";
-});
+// Route::get('/blogs', function () {
+//     return "Hello, This is blog page.";
+// });
 
 
 // Dynamic Route
-Route::get('/blogs/{id}', function($id) {
-    return "Hello, This is blog detail - $id.";
-});
+// Route::get('/blogs/{id}', function($id) {
+//     return "Hello, This is blog detail - $id.";
+// });
 
 
 // Routes Name
-Route::get('/dashboard', function(){
-    return "Welcome from TPP Program Dashboard!";
-})->name('dashboard.tpp');
+// Route::get('/dashboard', function(){
+//     return "Welcome from TPP Program Dashboard!";
+// })->name('dashboard.tpp');
 
-Route::get('/tpp', function(){
-    return redirect()->route('dashboard.tpp');
-});
+// Route::get('/tpp', function(){
+//     return redirect()->route('dashboard.tpp');
+// });
 
 
 // Group Routes
-Route::prefix('dashboard')->group(function() {
-    Route::get('/admin', function() {
-        return "This is admin dashboard.";
-    });
+// Route::prefix('dashboard')->group(function() {
+//     Route::get('/admin', function() {
+//         return "This is admin dashboard.";
+//     });
 
-    Route::get('/users', function() {
-        return "This is user dashboard.";
-    });
-});
+//     Route::get('/users', function() {
+//         return "This is user dashboard.";
+//     });
+// });
 
 // Larvael Views
 Route::get('/students', [StudentController::class, 'index']);
 
-// Route::get('/', function() {
-//     return view('index');
-// });
+Route::get('/dashboard', function() {
+    return view('index');
+})->name('dashboard');
 
 // Model and Migrations
 
