@@ -2,9 +2,12 @@
 @section('content')
     <div class="container">
         <h4 class="m-4">Product List</h4>
+        @can('productCreate')
         <a href="{{ route('products.create') }}" class="btn btn-outline-success mb-4">
             + Create
         </a>
+        @endcan
+
         <table class="table table-bordered">
             <thead>
                 <tr>
