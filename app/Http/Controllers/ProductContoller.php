@@ -5,13 +5,17 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProductRequest;
 use App\Models\Category;
 use App\Models\Product;
+use App\Repositories\Category\CategoryRepositoryInterface;
 use Illuminate\Http\Request;
 
 class ProductContoller extends Controller
 {
-    public function __construct()
+    protected $categoryRepository;
+
+    public function __construct(CategoryRepositoryInterface $categoryRepository)
     {
         $this->middleware('auth');
+        $this->categoryRepository = $categoryRepository;
     }
 
     public function index()
@@ -23,14 +27,13 @@ class ProductContoller extends Controller
 
     public function create()
     {
-        $category = Category::all();
+        $category = $this->categoryRepository->index();
 
         return view('products.create', compact('category'));
     }
 
     public function store(ProductRequest $request)
     {
-        // dd($request->all());
         $data = $request->validated();
 
         $data['status'] = $request->has('status') ? true : false;
