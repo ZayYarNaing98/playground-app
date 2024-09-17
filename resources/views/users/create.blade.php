@@ -41,6 +41,14 @@
                         <input type="password" name="password_confirmation" class="form-control" id="password_confirmation"
                             placeholder="Confirm password" required>
                     </div>
+                    <div class="form-group">
+                        <label>Roles</label>
+                        <select class="form-select select" name="roles[]">
+                            @foreach ($roles as $role)
+                                <option value="{{ $role->id }}">{{ $role->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
                 <div class="card-footer">
                     <button class="btn btn-primary" type="submit">+ Create</button>
