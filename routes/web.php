@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductContoller;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -86,6 +87,11 @@ Route::get('/products/{id}', [ProductContoller::class, 'edit'])->name('products.
 Route::post('/products/{id}/update', [ProductContoller::class, 'update'])->name('products.update');
 
 Route::post('/products/{id}', [ProductContoller::class, 'destroy'])->name('products.delete');
+
+
+// Users
+Route::resource('/users', UserController::class);
+
 
 // Authentation
 
