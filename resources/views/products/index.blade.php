@@ -3,9 +3,9 @@
     <div class="container">
         <h4 class="m-4">Product List</h4>
         @can('productCreate')
-        <a href="{{ route('products.create') }}" class="btn btn-outline-success mb-4">
-            + Create
-        </a>
+            <a href="{{ route('products.create') }}" class="btn btn-outline-success mb-4">
+                + Create
+            </a>
         @endcan
 
         <table class="table table-bordered">
@@ -39,12 +39,16 @@
                         </td>
                         <th>{{ $data['category']['name'] }}</th>
                         <th class="d-flex">
-                            <a href="{{ route('products.edit', ['id' => $data->id]) }}"
-                                class="btn btn-outline-secondary me-2">Edit</a>
-                            <form action="{{ route('products.delete', $data->id) }}" method="POST">
-                                @csrf
-                                <button class="btn btn-outline-danger">Delete</button>
-                            </form>
+                            @can('productEdit')
+                                <a href="{{ route('products.edit', ['id' => $data->id]) }}"
+                                    class="btn btn-outline-secondary me-2">Edit</a>
+                            @endcan
+                            @can('productDelete')
+                                <form action="{{ route('products.delete', $data->id) }}" method="POST">
+                                    @csrf
+                                    <button class="btn btn-outline-danger">Delete</button>
+                                </form>
+                            @endcan
                         </th>
                     </tr>
                 @endforeach
