@@ -11,6 +11,7 @@
                     <th class="bg-primary text-white" scope="col">ID</th>
                     <th class="bg-primary text-white" scope="col">Name</th>
                     <th class="bg-primary text-white" scope="col">Email</th>
+                    <th class="bg-primary text-white" scope="col">Role</th>
                     <th class="bg-primary text-white" scope="col">ACTION</th>
                 </tr>
             </thead>
@@ -20,6 +21,11 @@
                         <th>{{ $data['id'] }}</th>
                         <th>{{ $data['name'] }}</th>
                         <th>{{ $data['email'] }}</th>
+                        <th>
+                            @foreach ($data->roles as $row)
+                                {{ $row->name }}
+                            @endforeach
+                        </th>
                         <th class="d-flex">
                             <a href="{{ route('users.edit', ['user' => $data->id]) }}"
                                 class="btn btn-outline-secondary me-2">Edit</a>
