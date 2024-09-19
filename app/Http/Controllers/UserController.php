@@ -68,7 +68,9 @@ class UserController extends Controller
     {
         $user = User::where('id', $id)->first();
 
-        return view('users.edit', compact('user'));
+        $roles = Role::all();
+
+        return view('users.edit', compact('user', 'roles'));
     }
 
     /**
@@ -82,6 +84,8 @@ class UserController extends Controller
             'name' => $request->name,
             'emai' => $request->email,
         ]);
+
+        $user->roles()->sync($request['roles']);
 
         return redirect()->route('users.index');
     }

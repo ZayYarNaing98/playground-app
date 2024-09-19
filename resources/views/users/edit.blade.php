@@ -30,6 +30,15 @@
                         <input type="email" name="email" class="form-control" id="email" placeholder="Enter email"
                             value="{{ $user->email }}">
                     </div>
+                    <div class="form-group">
+                        <label>Roles</label>
+                        <select class="form-select select" name="roles[]">
+                            @foreach ($roles as $role)
+                                <option value="{{ $role->id }}" {{ $user->roles->contains($role->id) ? 'selected' : '' }}>{{ $role->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
                 </div>
                 <div class="card-footer">
                     <button class="btn btn-primary" type="submit">Update</button>
