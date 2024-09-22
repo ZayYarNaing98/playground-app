@@ -6,21 +6,24 @@ use App\Http\Requests\ProductRequest;
 use App\Models\Category;
 use App\Models\Product;
 use App\Repositories\Category\CategoryRepositoryInterface;
+use App\Repositories\Product\ProductRepositoryInterface;
 use Illuminate\Http\Request;
 
 class ProductContoller extends Controller
 {
     protected $categoryRepository;
+    protected $productRepository;
 
-    public function __construct(CategoryRepositoryInterface $categoryRepository)
+    public function __construct(CategoryRepositoryInterface $categoryRepository, ProductRepositoryInterface $productRepository)
     {
         $this->middleware('auth');
         $this->categoryRepository = $categoryRepository;
+        $this->productRepository = $productRepository;
     }
 
     public function index()
     {
-        $product = Product::with('category')->get();
+        $product = $this->productRepository->index();
 
         return view('products.index', compact('product'));
     }
@@ -46,7 +49,7 @@ class ProductContoller extends Controller
             $data = array_merge($data, ['image' => $imageName]);
         }
 
-        Product::create($data);
+        $this->productRepository->store($data);
 
         return redirect()->route('products.index');
     }
@@ -54,14 +57,14 @@ class ProductContoller extends Controller
 
     public function edit(string $id)
     {
-        $product = Product::with('category')->where('id', $id)->first();
+        $product = $this->productRepository->show($id);
 
         return view('products.edit', compact('product'));
     }
 
     public function update(Request $request)
     {
-        $product = Product::where('id', $request->id)->first();
+        $product = $this->productRepository->show($request->id);
 
         $product->update([
             'name' => $request->name,
@@ -75,7 +78,7 @@ class ProductContoller extends Controller
 
     public function destroy($id)
     {
-        $product = Product::where('id', $id)->first();
+        $product = $this->productRepository->show($id);
 
         $product->delete();
 
