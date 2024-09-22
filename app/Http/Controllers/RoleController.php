@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\Permission\PermissionRepositoryInterface;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use App\Repositories\Role\RoleRepositoryInterface;
@@ -9,9 +10,12 @@ use App\Repositories\Role\RoleRepositoryInterface;
 class RoleController extends Controller
 {
     private RoleRepositoryInterface $roleRepository;
-    public function __construct(RoleRepositoryInterface $roleRepository)
+    private PermissionRepositoryInterface $permissionRepository;
+
+    public function __construct(RoleRepositoryInterface $roleRepository, PermissionRepositoryInterface $permissionRepository)
     {
         $this->roleRepository = $roleRepository;
+        $this->permissionRepository = $permissionRepository;
     }
     /**
      * Display a listing of the resource.
@@ -28,7 +32,9 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return view('roles.create');
+        $permission = $this->permissionRepository->index();
+
+        return view('roles.create', compact('permission'));
     }
 
     /**
@@ -36,9 +42,12 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        Role::create([
+        // dd($request->all());
+        $role = Role::create([
             'name' => $request->name,
         ]);
+
+        $role->permissions()->sync($request->permission);
 
         return redirect()->route('roles.index');
     }
@@ -56,9 +65,11 @@ class RoleController extends Controller
      */
     public function edit(string $id)
     {
+        $permissions = $this->permissionRepository->index();
+
         $role = $this->roleRepository->show($id);
 
-        return view('roles.edit', compact('role'));
+        return view('roles.edit', compact('role', 'permissions'));
     }
 
     /**
