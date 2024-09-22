@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductContoller;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 
@@ -95,6 +96,10 @@ Route::resource('/users', UserController::class);
 
 // Roles
 Route::resource('/roles', RoleController::class);
+
+// Permissions
+
+Route::resource('/permissions', PermissionController::class);
 
 
 // Authentation
