@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductContoller;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -91,6 +92,9 @@ Route::post('/products/{id}', [ProductContoller::class, 'destroy'])->name('produ
 
 // Users
 Route::resource('/users', UserController::class);
+
+// Roles
+Route::resource('/roles', RoleController::class);
 
 
 // Authentation
